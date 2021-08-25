@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="countryInfo">
+      <h3><strong>{{ countryInfo.country }}</strong></h3>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="countryInfo">
+  <center>
+    <ion-card>
+    <img [src]="countryInfo.countryInfo.flag" style="width: 100%;">
+    
+      <ion-card-title style="border-top: 1px solid black;">
+        <h3><strong>TODAY CASES</strong></h3>
+      </ion-card-title>
+      <p><strong>{{ countryInfo.todayCases }}</strong></p>
+      <ion-card-title style="border-top: 1px solid black;">
+        <h3><strong>ALL CASES</strong></h3>
+      </ion-card-title>
+      <p><strong>{{ countryInfo.cases }}</strong></p>
+      <ion-card-title style="border-top: 1px solid black;">
+        <h3><strong>RECOVERED</strong></h3>
+      </ion-card-title>
+      <p><strong>{{ countryInfo.recovered }}</strong></p>
+      <ion-card-title style="border-top: 1px solid black;">
+        <h3><strong>DEATHS</strong></h3>
+      </ion-card-title>
+      <p><strong>{{ countryInfo.deaths }}</strong></p>
+    </ion-card>
+
+  </center>
+</ion-content>

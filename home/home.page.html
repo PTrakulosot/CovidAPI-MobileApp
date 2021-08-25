@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title>
+      <h2><strong>COVID - 19</strong></h2>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <center>
+      <ion-button size="small" fill="clear" (click)="showContinent('All')">All</ion-button>|
+      <ion-button size="small" fill="clear" (click)="showContinent('North America')">North America</ion-button>|
+      <ion-button size="small" fill="clear" (click)="showContinent('Asia')">Asia</ion-button>|
+      <ion-button size="small" fill="clear" (click)="showContinent('South America')">South America</ion-button>
+      <ion-button size="small" fill="clear" (click)="showContinent('Europe')">Europe</ion-button>|
+      <ion-button size="small" fill="clear" (click)="showContinent('Africa')">Africa</ion-button>|
+      <ion-button size="small" fill="clear" (click)="showContinent('Australia/Oceania')">Australia</ion-button>
+    </center>
+  </ion-item>
+  <div class="content" style="background-color: rgba(245, 245, 245, 0.802);">
+    <h1 *ngIf="this.continent == ''" style="margin: 10px;">All</h1>
+    <h1 *ngIf="this.continent != ''" style="margin: 10px;">{{ this.continent }}</h1>
+  </div>
+  <ion-list *ngFor="let item of results">
+    <ion-item button (click)="showCountryDetail(item.countryInfo.iso3)" *ngIf="item.continent == this.continent">
+      <ion-thumbnail slot="end">
+        <img [src]="item.countryInfo.flag" style="border: black; border-radius: 5px;">
+      </ion-thumbnail>
+      <ion-label>
+        <h1>{{item.country}}</h1>
+        <ion-badge color="success" style="color: black;" *ngIf="item.todayCases == 0">{{item.todayCases}}</ion-badge>
+        <ion-badge color="warning" *ngIf="item.todayCases > 0 && item.todayCases <= 10">{{item.todayCases}}</ion-badge>
+        <ion-badge color="danger" *ngIf="item.todayCases > 10">{{item.todayCases}}</ion-badge>
+      </ion-label>
+    </ion-item>
+    <ion-item button (click)="showCountryDetail(item.countryInfo.iso3)"
+      *ngIf="this.continent == 'All' || this.continent == ''">
+      <ion-thumbnail slot="end">
+        <img [src]="item.countryInfo.flag" style="border: black; border-radius: 5px;">
+      </ion-thumbnail>
+      <ion-label>
+        <h1>{{item.country}}</h1>
+        <ion-badge color="success" style="color: black;" *ngIf="item.todayCases == 0">{{item.todayCases}}</ion-badge>
+        <ion-badge color="warning" *ngIf="item.todayCases > 0 && item.todayCases <= 10">{{item.todayCases}}</ion-badge>
+        <ion-badge color="danger" *ngIf="item.todayCases > 10">{{item.todayCases}}</ion-badge>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
